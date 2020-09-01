@@ -29,8 +29,6 @@ import java.util.Optional;
 @Slf4j
 public class AuthController {
     @Autowired
-    UserService userService;
-    @Autowired
     EmployeeService employeeService;
     @Autowired
     private TokenService tokenService;
@@ -38,16 +36,9 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
-//    @PostMapping("/register")
-//    public User register(@RequestBody User user){
-//        user.setUserId(UUID.randomUUID().toString());
-//        user.setUserPassword(new BCryptPasswordEncoder().encode(user.getUserPassword()));
-//        return userService.create(user);
-//    }
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest){
-//        UserPrincipal userPrincipal = userService.findByUsername(loginRequest.getUsername());
         UserPrincipal userPrincipal = employeeService.findByUserName(loginRequest.getUsername());
         Optional.ofNullable(userPrincipal).ifPresent(u -> {
             log.warn("userPrincipalPassword:{}, userLoginPassword:{} ",

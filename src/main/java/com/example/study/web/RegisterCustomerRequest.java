@@ -1,7 +1,5 @@
 package com.example.study.web;
 
-import com.example.study.common.CommonTimestamp;
-import com.example.study.model.Customer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
